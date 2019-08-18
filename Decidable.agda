@@ -50,3 +50,7 @@ suc a ≤? suc b with a ≤? b
   where
     help : ∀ a b → ¬ (a ≤ b) → ¬ (suc a ≤ suc b)
     help a b a≰b (s≤s p) = a≰b p
+
+⌊_⌋ : {P : Set} → Dec P → Bool
+⌊ yes _ ⌋ = true
+⌊ no  _ ⌋ = false
