@@ -8,3 +8,7 @@ open import Function   using (const; _$_)
 open import Relation.Nullary using (¬_)
 open import Relation.Binary.PropositionalEquality using (_≡_; refl; subst; cong)
 
+data Dec (A : Set) : Set where
+  yes :   A → Dec A
+  no  : ¬ A → Dec A
+
