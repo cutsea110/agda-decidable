@@ -40,3 +40,13 @@ suc a ≟ suc b with a ≟ b
   where
     help : ∀ a b → a ≢ b → suc a ≢ suc b
     help a .a prf refl = prf refl
+
+_≤?_ : (a b : ℕ) → Dec (a ≤ b)
+zero ≤? b = yes z≤n
+suc a ≤? zero = no (λ ())
+suc a ≤? suc b with a ≤? b
+(suc a ≤? suc b) | yes a≤b = yes (s≤s a≤b)
+(suc a ≤? suc b) | no  a≰b = no (help a b a≰b)
+  where
+    help : ∀ a b → ¬ (a ≤ b) → ¬ (suc a ≤ suc b)
+    help a b a≰b (s≤s p) = a≰b p
